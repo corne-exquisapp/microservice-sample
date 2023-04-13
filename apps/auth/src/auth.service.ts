@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { User } from 'apps/user/src/schemas/user.schema';
 import { Response } from 'express';
-import { User } from './users/schemas/user.schema';
 
 export interface TokenPayload {
   userId: string;
