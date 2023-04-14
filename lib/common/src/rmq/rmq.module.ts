@@ -23,7 +23,7 @@ export class RmqModule {
 							transport: Transport.RMQ,
 							options: {
 								urls: [configService.get<string>('AMPQ_CONNECTION_URL')],
-								queue: configService.get<string>(`RABBIT_MQ_QUEUE`),
+								queue: name,
 							},
 						}),
 						inject: [ConfigService],
@@ -33,5 +33,5 @@ export class RmqModule {
 			exports: [ClientsModule],
 		};
 	}
-	
+
 }

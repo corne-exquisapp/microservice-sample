@@ -11,9 +11,9 @@ export class BillingController {
 		private readonly billingService: BillingService
 	) { }
 
-	@EventPattern('billing.wallet.create')
-	async handleCreateWallet(@Payload() data: any, @Ctx() context: RmqContext) {
-		this.billingService.createWallet(data);
+	@EventPattern('billing_create')
+	async handleCreatebilling(@Payload() data: any, @Ctx() context: RmqContext) {
+		await this.billingService.createBilling(data);
 		this.rmqService.ack(context);
 	}
 

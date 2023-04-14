@@ -2,9 +2,9 @@ import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class NotificationService {
-	private readonly logger = new Logger(NotificationService.name);
+	
+	async notify(data: any) {
+		console.log(console.log('Notification recieved  =>', data));
 
-	notify(data: any) {
-		this.logger.log('Notification sent...', data);
 	}
 }

@@ -10,10 +10,10 @@ export class NotificationController {
 		private readonly notificationService: NotificationService
 	) { }
 
-	@EventPattern('notification.send')
-	@UseGuards(JwtAuthGuard)
-	async handleOrderCreated(@Payload() data: any, @Ctx() context: RmqContext) {
-		this.notificationService.notify(data);
+	@EventPattern('notification_send')
+	// @UseGuards(JwtAuthGuard)
+	async handleNotification(@Payload() data: any, @Ctx() context: RmqContext) {
+		await this.notificationService.notify(data);
 		this.rmqService.ack(context);
 	}
 

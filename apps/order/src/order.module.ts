@@ -2,16 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { AuthModule, RmqModule } from 'lib/common';
-import { BILLING_SERVICE } from './constants/services';
+import { BILLING_SERVICE, MiscroserviceAppNames, NOTIFICATION } from './constants/services';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
 
 @Module({
 	imports: [
 		AuthModule,
-		RmqModule.register({
-			name: BILLING_SERVICE,
-		}),
 		ConfigModule.forRoot({
 			isGlobal: true,
 			// validationSchema: Joi.object({
@@ -20,6 +17,8 @@ import { OrderService } from './order.service';
 			// }),
 			envFilePath: './apps/order/.env',
 		}),
+		RmqModule.register({ name: MiscroserviceAppNames.BILLING_SERVICE }),
+		RmqModule.register({ name: MiscroserviceAppNames.NOTIFICATION_SERVICE }),
 	],
 	controllers: [OrderController],
 	providers: [OrderService],

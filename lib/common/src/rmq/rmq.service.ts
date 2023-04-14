@@ -7,11 +7,13 @@ export class RmqService {
 	constructor(private readonly configService: ConfigService) { }
 
 	getOptions(queue?: string, noAck = false): RmqOptions {
+		const rabitQueue = this.configService.get<string>(`RABBIT_MQ_QUEUE`);
+		console.log(`${rabitQueue} => Microservice Started!`);
 		return {
 			transport: Transport.RMQ,
 			options: {
 				urls: [this.configService.get<string>('AMPQ_CONNECTION_URL')],
-				queue: this.configService.get<string>(`RABBIT_MQ_QUEUE`),
+				queue: rabitQueue,
 				noAck,
 				persistent: true,
 			},

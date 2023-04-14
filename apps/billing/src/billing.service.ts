@@ -2,9 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class BillingService {
-	private readonly logger = new Logger(BillingService.name);
 
-	createWallet(data: any) {
-		this.logger.log('Wallet created!...', data);
+	async createBilling(data: any) {
+		console.log(console.log('Billing create recieved  =>', data));
 	}
 }

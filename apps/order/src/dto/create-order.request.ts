@@ -1,5 +1,6 @@
 import {
 	IsNotEmpty,
+	IsNumber,
 	IsPhoneNumber,
 	IsPositive,
 	IsString,
@@ -11,5 +12,11 @@ export class CreateOrderRequest {
 	productName: string;
 
 	@IsPositive()
+	@IsNumber()
+	price: number;
+}
+
+export interface IOrder {
+	productName: string;
 	price: number;
 }
