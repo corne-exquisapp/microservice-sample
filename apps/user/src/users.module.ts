@@ -8,14 +8,14 @@ import { DatabaseModule, RmqModule } from 'lib/common';
 
 @Module({
   imports: [
-		MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-		DatabaseModule,
+		// MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+		// DatabaseModule,
 		RmqModule.register({
 			name: 'NOTIFICATION',
 		}),
   ],
   controllers: [UsersController],
-  providers: [UsersService, UsersRepository],
+  providers: [UsersService],
   exports: [UsersService],
 })
 export class UsersModule {}

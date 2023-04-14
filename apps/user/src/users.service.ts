@@ -14,22 +14,25 @@ import { lastValueFrom } from 'rxjs';
 @Injectable()
 export class UsersService {
 	constructor(
-		private readonly usersRepository: UsersRepository,
+		private readonly usersRepository: any,
 		@Inject('NOTIFICATION') private notificationClient: ClientProxy,
 	) { }
 
 	async createUser(request: CreateUserRequest, authentication: any) {
 		await this.validateCreateUserRequest(request);
-		const user = await this.usersRepository.create({
-			...request,
-			password: await bcrypt.hash(request.password, 10),
-		});
+		const user = request
 
 		await lastValueFrom(
 			this.notificationClient.emit('notification.send', {
 				user,
 				Authentication: authentication,
-			}),
+			})
+		);
+		await lastValueFrom(
+			this.notificationClient.emit('billing.wallet.create', {
+				user,
+				Authentication: authentication,
+			})
 		);
 
 		return user;
