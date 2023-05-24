@@ -1,9 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { User } from 'apps/user/src/schemas/user.schema';
 import { lastValueFrom } from 'rxjs';
-import { BILLING_SERVICE, MiscroserviceAppNames, NOTIFICATION } from './constants/services';
-import { CreateOrderRequest } from './dto/create-order.request';
+import { BILLING_SERVICE, MiscroserviceAppNames, NOTIFICATION } from '../../../lib/common/src/constants/services';
+import { CreateOrderDto } from './dto/order.dto';
 
 @Injectable()
 export class OrderService {
@@ -14,7 +13,7 @@ export class OrderService {
 	) { }
 
 
-	async createOrder(orderDto: CreateOrderRequest) {
+	async createOrder(orderDto: CreateOrderDto) {
 		try {
 
 			// create order logic

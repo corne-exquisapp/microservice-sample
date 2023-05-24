@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { AuthModule, RmqModule } from 'lib/common';
-import { BILLING_SERVICE, MiscroserviceAppNames, NOTIFICATION } from './constants/services';
+import { BILLING_SERVICE, MiscroserviceAppNames, NOTIFICATION } from '../../../lib/common/src/constants/services';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
 

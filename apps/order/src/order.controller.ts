@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { CreateOrderRequest } from './dto/create-order.request';
+import { CreateOrderRequest } from './dto/order.dto';
 import { OrderService } from './order.service';
 
 @Controller('order')
@@ -13,7 +13,7 @@ export class OrderController {
 		@Res() res: Response
 	) {
 		const message = await this.orderService.createOrder(orderDto);
-		res.status(HttpStatus.OK).json({ message })
+		res.status(HttpStatus.CREATED).json({ message })
 	}
 
 	@Get()

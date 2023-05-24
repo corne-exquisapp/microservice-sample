@@ -16,7 +16,7 @@ describe('OrderController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(orderController.getHello()).toBe('Hello World!');
+      expect(orderController.getOrders('' as any)).toBe('Hello World!');
     });
   });
 });
